@@ -1,0 +1,1 @@
+Backend-centric full-stack SaaS application for accounting practice management, built with ASP.NET Core and React, featuring scalable API design and role-based access control.
