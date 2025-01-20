@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="landmarkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="landmarks" Relationship="landmarkModel.FK_landmarks_user" FromRole="User" ToRole="landmark" />
+  </EntityType>
+  <EntityContainer Name="landmarkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="landmarks" EntityType="landmarkModel.landmark" />
+    <AssociationSet Name="FK_landmarks_user" Association="landmarkModel.FK_landmarks_user">
+      <End Role="User" EntitySet="Users" />
+      <End Role="landmark" EntitySet="landmarks" />
+    </AssociationSet>
+    <FunctionImport Name="ClearAndSeedData" />
+  </EntityContainer>
+  <EntityType Name="landmark">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="landmarkModel.FK_landmarks_user" FromRole="landmark" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_landmarks_user">
+    <End Type="landmarkModel.User" Role="User" Multiplicity="1" />
+    <End Type="landmarkModel.landmark" Role="landmark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="landmark">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

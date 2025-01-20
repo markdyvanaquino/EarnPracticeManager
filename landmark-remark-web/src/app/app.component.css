@@ -1,0 +1,27 @@
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+h2 { text-align:center;}
+#map {
+height: 300px;
+width:80%;
+display:block;
+margin:10px auto;
+}
+.container
+{
+    background-color:#e9f4fb;
+    padding:20px;
+}
+.listContainer,.form-group
+{
+    max-width:500px;
+    margin:10px auto;
+    display:block;
+}
+.buttons button
+{
+    width:49%;
+}

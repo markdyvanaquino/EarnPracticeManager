@@ -1,0 +1,56 @@
+<div class="container">
+<h2>
+    {{title}}
+</h2>
+    <div class="form-group">
+        <label for="user">I am</label>
+        <select id="user" class="form-control" (change)="selectUser($event.target.value)">
+            <option value="0">Select a User</option>
+            <option *ngFor="let user of users" value="{{user.Id}}">
+                {{user.userName}}
+            </option>
+        </select>
+    </div>
+    <div *ngIf="userSelected">
+        <div class="form-group buttons">
+            <button type="button" class="btn btn-default" (click)="toggleShow('show map')">Show Map</button>
+            <button type="button" class="btn btn-default" (click)="toggleShow('show list')">Show List</button>
+        </div>
+        <div class="mapContainer" *ngIf="showMap">
+            <div id="map"></div>
+            <div id="landmark-form">
+                <form>
+                    <div class="form-group">
+                        <label for="note">Note at my current location</label>
+                        <input type="text" class="form-control" id="note" required />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-block" (click)="addLandmark()">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="listContainer" *ngIf="showList">
+            <div class="form-group searchContainer">
+                <label for="searchtxt">Search</label>
+                <input type="text" id="searchtxt" class="form-control" (keyup)="getDisplayedLandmarksList($event.target.value)" />
+            </div>
+            <table id="landmarks-list" class="table table-striped">
+                <tr>
+                    <th>username</th>
+                    <th>Location</th>
+                    <th>Note</th>
+                </tr>
+                <tr *ngFor="let landmark of listedLandmarks">
+                    <td>{{landmark.userName}}</td>
+                    <td>{{landmark.latitude}},{{landmark.longitude}}</td>
+                    <td>{{landmark.note}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<input type="hidden" id="longitude" value="0" />
+<input type="hidden" id="latitude" value="0" />
+</div>

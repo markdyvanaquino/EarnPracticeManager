@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="landmarkModelStoreContainer" CdmEntityContainer="landmarkEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="landmarkModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="landmarks">
+      <EntityTypeMapping TypeName="landmarkModel.landmark">
+        <MappingFragment StoreEntitySet="landmarks">
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ClearAndSeedData" FunctionName="landmarkModel.Store.ClearAndSeedData" />
+  </EntityContainerMapping>
+</Mapping>
